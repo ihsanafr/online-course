@@ -55,10 +55,14 @@ class User extends Authenticatable
         return $this->belongsToMany(Course::class, 'course_students');
     }
 
+    public function subscribe_transactions(){
+        return $this->hasMany(SubscribeTransaction::class);
+    }
+
     public function hasActiveSubscription(){
         $latestSubscription = $this->subscribe_transactions()
         ->where('is_paid', true)
-        ->latest('update_at')
+        ->latest('updated_at')
         ->first();
         
         if(!$latestSubscription){
