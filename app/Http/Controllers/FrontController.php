@@ -26,7 +26,7 @@ class FrontController extends Controller
         return view('front.details', compact('course'));
     }
 
-    public function category(Category $category)
+    public function category(Category $category, )
     {
         $courses = $category->courses()->get();
         return view('front.category', compact('courses'));
